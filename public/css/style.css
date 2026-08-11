@@ -4,7 +4,6 @@ body{
 
 
 .navbar{
-    height: 5rem;
     background-color: white;
 }
 
@@ -45,7 +44,6 @@ body{
     background-color: #ebebeb;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: space-evenly;
 }
 
 /* Cards */
@@ -66,4 +64,22 @@ body{
 
 .card-text {
     font-weight: 600 !important;
+}
+
+.listing-link{
+    text-decoration: none;
+}
+
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.1;
+    background-color: white;
+}
+
+.add-btn{
+    background-color: #fe424d !important;
+    border: none !important;
 }
