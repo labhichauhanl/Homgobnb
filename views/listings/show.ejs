@@ -3,36 +3,41 @@
     <body>
 
         <div class="row">
-            <div class="col-8 offset-2 mt-3">
+            <div class="col-8 offset-3 mt-3 mb-2">
                 <h2>Listings Details</h2>
             </div>
-            <div class="card col-6 offset-2">
+
+            <div class="card col-6 offset-3">
                 <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing_image">
+
                 <div class="card-body">
                     <p class="card-text">
+                    <h3>
                         <%= listing.title %>
+                    </h3>
+                    <p>
+                        <%= listing.description %>
+                    </p>
+                    <p>Price: &#8377; <%= listing.price.toLocaleString('en-IN') %>
+                    </p>
+                    <p>Location: <%= listing.location %>
+                    </p>
+                    <p>Country: <%= listing.country %>
+                    </p>
                     </p>
                 </div>
             </div>
 
-            <h1>
-                <%= listing.title %>
-            </h1>
-            <p>
-                <%= listing.description %>
-            </p>
-            <p>Price: &#8377; <%= listing.price.toLocaleString('en-IN') %>
-            </p>
-            <p>Location: <%= listing.location %>
-            </p>
-            <p>Country: <%= listing.country %>
-            </p>
-            <br><br>
-
-            <a href="/listings/<%= listing._id %>/edit">Edit Listing</a>
-            <br><br>
-            <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
-                <button type="submit">Delete Listing</button>
-            </form>
         </div>
+        <DIV class="btns offset-3 mb-5">
+            <div class="col-2">
+                <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark edit-btn">Edit List</a>
+            </div>
+            
+            <div class="col2">
+                <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-dark">Delete</button>
+                </form>
+            </div>
+        </DIV>
     </body>
