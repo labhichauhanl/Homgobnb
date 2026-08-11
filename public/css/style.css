@@ -39,7 +39,7 @@ body{
 .f-info{
     text-align: center;
     display: flex;
-    height: 8rem;
+    height: 6.5rem;
     padding: 1rem 0;
     background-color: #ebebeb;
     flex-wrap: wrap;
@@ -81,5 +81,10 @@ body{
 
 .add-btn{
     background-color: #fe424d !important;
+    border: none !important;
+}
+
+.edit-btn{
+        background-color: #fe424d !important;
     border: none !important;
 }
