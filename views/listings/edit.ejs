@@ -3,45 +3,62 @@
     <div class="row">
         <DIV class="col-8 offset-2">
             <br>
-            
+
             <h1>Edit Listing</h1>
-            <form action="/listings/<%= listing._id %>?_method=PUT" method="POST">
+            <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" novalidate class="needs-validation">
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" class="form-control" name="listing[title]" value="<%= listing.title %>" required>
+                    <div class="valid-feedback">Title accepted!</div>
+                    <div class="invalid-feedback">Please enter a valid detail.</div>
                 </div>
                 <div class="mb-3">
                     <label for="desccription" class="form-label">Description</label>
-                    <textarea name="listing[description]" class="form-control" required><%= listing.description %></textarea>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="price" class="form-label">Price</label>
-                    <input type="number" class="form-control" name="listing[price]" value="<%= listing.price %>" placeholder="Enter Price" required>
+                    <textarea name="listing[description]" class="form-control"
+                        required><%= listing.description %></textarea>
+                    <div class="valid-feedback">Description accepted!</div>
+                    <div class="invalid-feedback">Please enter a valid detail.</div>
                 </div>
 
-                <div class="row"> 
-                <div class="mb-3 col-6 ">
-                    <label for="location" class="form-label">Location</label>
-                    <input type="text" class="form-control" name="listing[location]" value="<%= listing.location %>" placeholder="Enter Location" required>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" class="form-control" name="listing[price]" value="<%= listing.price %>"
+                        placeholder="Enter Price" required>
+                    <div class="valid-feedback">Price accepted!</div>
+                    <div class="invalid-feedback">Please enter a valid detail.</div>
                 </div>
-                
-                <div class="mb-3 col-6">
-                    <label for="country" class="form-label">Country</label>
-                    <input type="text" class="form-control" name="listing[country]" value="<%= listing.country %>" placeholder="Enter Country" required>
+
+                <div class="row">
+                    <div class="mb-3 col-6 ">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" class="form-control" name="listing[location]" value="<%= listing.location %>"
+                            placeholder="Enter Location" required>
+                        <div class="valid-feedback">Location accepted!</div>
+                        <div class="invalid-feedback">Please enter a valid detail.</div>
+                    </div>
+
+                    <div class="mb-3 col-6">
+                        <label for="country" class="form-label">Country</label>
+                        <input type="text" class="form-control" name="listing[country]" value="<%= listing.country %>"
+                            placeholder="Enter Country" required>
+                        <div class="valid-feedback">Country accepted!</div>
+                        <div class="invalid-feedback">Please enter a valid detail.</div>
+                    </div>
                 </div>
-                  </div>
-                
+
                 <div class="mb-3">
                     <label for="location" class="form-label">Image URL</label>
-                    <input type="text" class="form-control" name="listing[image]" value="<%= listing.image %>" placeholder="Enter Image URL" required>
+                    <input type="text" class="form-control" name="listing[image][url]" value="<%= listing.image.url %>"
+                        placeholder="Enter Image URL" required>
+                    <div class="valid-feedback">Image accepted!</div>
+                    <div class="invalid-feedback">Please enter a valid detail.</div>
                 </div>
-                
+
                 <br>
                 <button type="submit" class="btn btn-dark edit-btn">Update Listing</button>
                 <br><br><br>
-        </form>
-    </body>
-    </html>
-</div>
-</DIV>
+            </form>
+            <script src="/js/script.js"></script>
+            </body>
+
+            </html>
