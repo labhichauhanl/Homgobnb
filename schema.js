@@ -1,4 +1,4 @@
-import Joi from 'joi';
+const Joi = require("Joi")
 
 module.exports.listingSchema = Joi.object({
     listing : Joi.object({
@@ -9,10 +9,4 @@ module.exports.listingSchema = Joi.object({
         price: Joi.number().required().min(0),
         image: Joi.string().allow("", null),
     }).required()
-});
-
-const { error, value } = schema.validate({
-    username: 'danilo',
-    email: 'danilo@example.com',
-    age: 28,
 });

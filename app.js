@@ -7,8 +7,8 @@ const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const wrapAsync = require('./utils/wrapAsync');
 const ExpressError = require('./utils/ExpressError');
-const { listingSchema } = require("./schema.js")
 const { wrap } = require('module');
+const listingSchema = require("./schema");
 
 const MONGO_URL = 'mongodb://localhost:27017/homigobnb';
 
