@@ -8,60 +8,88 @@ const ExpressError = require('./utils/ExpressError');
 const listings = require("./routes/listing");
 const reviews = require("./routes/review");
 const MONGO_URL = 'mongodb://localhost:27017/homigobnb';
-const session = require("express-session"); 
+const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const User = require("./models/user");
 
 async function main() {
-  await mongoose.connect(MONGO_URL);
+    await mongoose.connect(MONGO_URL);
 }
 
-main().then(() => {
-  console.log('Connected to MongoDB');
-})
-  .catch(err => console.error(err));
-
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
+main()
+    .then(() => {
+        console.log('Connected to MongoDB');
+    })
+    .catch(err => console.error(err));
 
 const sessionOptions = {
-  secret: "mysupersecretcode",
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    expires: Date.now() + 7*24*60*60*1000,
-    maxAge: 7*24*60*60*1000,
-    httpOnly: true
-  }
-}
+    secret: "mysupersecretcode",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true
+    }
+};
 
 app.use(session(sessionOptions));
 app.use(flash());
 
-app.use((req, res, next) =>{
-  res.locals.success = req.flash("success");
-  res.locals.error = req.flash("error");
-  next();
-})
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+});
+
+app.get("/demouser", async (req, res) => {
+    let fakeUser = new User({
+        email: "student@gmail.com",
+        username: "delta-student"
+    });
+    let registeredUser = await User.register(fakeUser, "helloworld");
+    res.send(registeredUser);
+});
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+
 app.engine('ejs', ejsMate);
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviews);
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+    res.send('Hello World!');
 });
 
 app.all('/*splat', (req, res, next) => {
-  next(new ExpressError(404, "Page Not Found!"));
-})
+    next(new ExpressError(404, "Page Not Found!"));
+});
 
 app.use((err, req, res, next) => {
-  let { statusCode, message = "Something went wrong. Error Occured." } = err;
-  res.render("listings/error.ejs", { message })
-})
+    let {
+        statusCode,
+        message = "Something went wrong. Error Occured."
+    } = err;
+
+    res.render("listings/error.ejs", { message });
+});
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
