@@ -3,13 +3,13 @@ const passport = require("passport");
 const User = require("../models/user");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync")
-const {saveRedirectUrl} = require("../middleware")
+const { saveRedirectUrl } = require("../middleware")
 
 router.get("/signup", (req, res) => {
     res.render("users/signup.ejs");
 });
 
-router.post("/signup", wrapAsync (async (req, res) => {
+router.post("/signup", wrapAsync(async (req, res) => {
     try {
         let { username, email, password } = req.body;
         const newUser = new User({ username, email });
@@ -19,7 +19,9 @@ router.post("/signup", wrapAsync (async (req, res) => {
                 return next(err);
             }
             req.flash("success", "Welcome to Homgobnb!");
-            res.redirect(req.session.redirectUrl);
+            let redirectUrl = res.locals.redirectUrl || "/listings";
+            delete req.session.redirectUrl;
+            res.redirect(redirectUrl);
         })
     }
     catch (e) {
@@ -36,9 +38,9 @@ router.post("/login", saveRedirectUrl, passport.authenticate("local", {
     failureRedirect: "/login",
     failureFlash: true
 }),
-   async (req, res) => {
+    async (req, res) => {
         req.flash("success", "Welcome to Homgobnb!");
-        let redirectUrl = res.locals.redirectUrl || "/listings"; 
+        let redirectUrl = res.locals.redirectUrl || "/listings";
         res.redirect(redirectUrl);
     });
 

@@ -6,6 +6,17 @@ body {
     background-color: white;
 }
 
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .fa-house-flood-water {
     color: #fe424d;
     margin-right: 0.5rem;
@@ -44,13 +55,23 @@ body {
 }
 
 .f-info {
+    width: 100%;
+    box-sizing: border-box;
     text-align: center;
     display: flex;
     height: 6.5rem;
     padding: 1rem 0;
+    margin: 0;
     background-color: #ebebeb;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+footer {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    margin-top: auto !important;
 }
 
 /* Cards */
