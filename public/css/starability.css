@@ -112,6 +112,7 @@
   float: left;
   width: 30px;
   height: 30px;
+  margin-right: 3px;
   font-size: 0.1em;
   color: transparent;
   cursor: pointer;
@@ -194,4 +195,12 @@
 .starability-slot > input:focus ~ label {
   -webkit-transition: background-position .7s;
   transition: background-position .7s;
+}
+
+.starability-slot {
+    width: 180px;
+}
+
+.starability-slot > label {
+    margin-right: 4px;
 }
