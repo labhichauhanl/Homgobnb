@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate') %>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
     <div class="row">
         <div class="col-8 offset-3 mt-3 mb-2">
@@ -31,7 +32,7 @@
     <% if(currUser && listing.owner && listing.owner._id.equals(currUser._id)) { %>
         <div class="btns offset-3 mb-5">
 
-            <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark edit-btn col-1 offset-3">Edit List</a>
+            <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark edit-btn col-1.5 offset-3">Edit List</a>
 
             <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
                 <button type="submit" class="btn btn-dark offset-5">Delete</button>
@@ -101,3 +102,45 @@
                                 <% } %>
                         </div>
             </div>
+            <div class="row">
+                <div class="col-8 offset-3 mb-4">
+                    <h4>Where you'll be</h4>
+                    <div id="map"></div>
+                </div>
+            </div>
+
+            <style>
+                #map {
+                    height: 400px;
+                    width: 100%;
+                    border-radius: 15px;
+                }
+            </style>
+
+            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+            <script>
+                const mapTilerKey = "<%= mapTilerApiKey %>";
+                console.log("MapTiler key loaded:", mapTilerKey);
+                const coordinates = "<%- JSON.stringify(listing.geometry.coordinates) %>";
+
+                const map = L.map("map").setView(
+                    [coordinates[1], coordinates[0]],
+                    12
+                );
+                L.tileLayer(
+                    `https://api.maptiler.com/maps/streets-v4/{z}/{x}/{y}.png?key=${mapTilerKey}`,
+                    {
+                        tileSize: 512,
+                        zoomOffset: -1,
+                        minZoom: 1,
+                        attribution:
+                            '&copy; <a href="https://www.maptiler.com/copyright/" target="_blank">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a>',
+                        crossOrigin: true
+                    }
+                ).addTo(map);
+                    L.marker([coordinates[1], coordinates[0]])
+    .addTo(map)
+    .bindPopup("<b><%= listing.title %></b>")
+    .openPopup();
+
+            </script>

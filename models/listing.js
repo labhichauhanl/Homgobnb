@@ -10,6 +10,17 @@ const listingSchema = new Schema({
     price: { type: Number},
     location: { type: String},
     country: { type: String},
+geometry: {
+    type: {
+        type: String,
+        enum: ["Point"],
+        required: true
+    },
+    coordinates: {
+        type: [Number],
+        required: true
+    }
+},
     owner: {
         type: Schema.Types.ObjectId,
         ref: "User"
