@@ -1,132 +1,230 @@
 #filters {
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            gap: 38px;
-            padding: 22px 10px 12px;
-            border-bottom: 1px solid #e5e5e5;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 38px;
+    padding: 22px 10px 12px;
+    border-bottom: 1px solid #e5e5e5;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
 
-        #filters::-webkit-scrollbar {
-            display: none;
-        }
+#filters::-webkit-scrollbar {
+    display: none;
+}
 
-        .filter {
-            min-width: 70px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #6b6b6b;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.2s ease;
-        }
+.filter {
+    min-width: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #6b6b6b;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
 
-        .filter i {
-            font-size: 24px;
-            margin-bottom: 9px;
-            color: #555;
-        }
+.filter i {
+    font-size: 24px;
+    margin-bottom: 9px;
+    color: #555;
+}
 
-        .filter p {
-            margin: 0;
-            font-size: 13px;
-            white-space: nowrap;
-            font-weight: 500;
-        }
+.filter p {
+    margin: 0;
+    font-size: 13px;
+    white-space: nowrap;
+    font-weight: 500;
+}
 
-        /* Hover */
-        .filter:hover {
-            color: #222;
-            transform: translateY(-2px);
-        }
+.filter:hover {
+    color: #222;
+    transform: translateY(-2px);
+}
 
-        .filter:hover i {
-            color: #222;
-        }
+.filter:hover i {
+    color: #222;
+}
 
-        /* Active category */
-        .filter.active {
-            color: #222;
-        }
+.filter.active {
+    color: #222;
+}
 
-        .filter.active i {
-            color: #FF385C;
-        }
+.filter.active i {
+    color: #FF385C;
+}
 
-        .filter.active p {
-            color: #FF385C;
-        }
+.filter.active p {
+    color: #FF385C;
+}
 
-        .filter.active::after {
-            content: "";
-            position: absolute;
-            bottom: -13px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 45px;
-            height: 3px;
-            background: #FF385C;
-            border-radius: 5px;
-        }
+.filter.active::after {
+    content: "";
+    position: absolute;
+    bottom: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 45px;
+    height: 3px;
+    background: #FF385C;
+    border-radius: 5px;
+}
 
-                    .explore-heading {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin: 22px 0 18px;
-            }
+.explore-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 22px 0 18px;
+}
 
-            .explore-heading h2 {
-                margin: 0;
-                font-size: 26px;
-                font-weight: 600;
-                color: #222;
-            }
+.explore-heading h2 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 600;
+    color: #222;
+}
 
-            .explore-heading button {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                background: white;
-                border: 1px solid #222;
-                border-radius: 25px;
-                padding: 10px 18px;
-                font-size: 14px;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.2s ease;
-            }
+.explore-heading button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border: 1px solid #222;
+    border-radius: 25px;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
 
-            .explore-heading button i {
-                font-size: 15px;
-            }
+.explore-heading button i {
+    font-size: 15px;
+}
 
-            .explore-heading button:hover {
-                background: #f7f7f7;
-            }
+.explore-heading button:hover {
+    background: #f7f7f7;
+}
 
-        @media (max-width: 768px) {
+.listing-location {
+    color: #717171;
+    font-size: 14px;
+}
 
-            #filters {
-                justify-content: flex-start;
-                gap: 25px;
+.listing-location i {
+    color: #FF385C;
+    margin-right: 4px;
+}
 
-                padding-left: 20px;
-                padding-right: 20px;
-            }
+.home-search {
+    width: min(800px, 90%);
+    min-height: 64px;
+    margin: 24px auto 22px;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 35px;
+    padding: 5px 7px 5px 20px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.10);
+    transition: box-shadow 0.2s ease;
+}
 
-            .filter {
-                min-width: 60px;
-            }
+.home-search:hover {
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.14);
+}
 
-            .filter i {
-                font-size: 21px;
-            }
+.home-search-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 15px;
+    flex: 1;
+    cursor: pointer;
+}
 
-            .filter p {
-                font-size: 12px;
-            }
-        }
+.home-search-item>i {
+    font-size: 17px;
+    color: #555;
+}
+
+.home-search-item div {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-search-item small {
+    font-size: 11px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 2px;
+}
+
+.home-search-item span {
+    font-size: 13px;
+    color: #717171;
+    white-space: nowrap;
+}
+
+.home-search-item input[type="date"] {
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+    color: #717171;
+    background: transparent;
+    padding: 0;
+    width: 105px;
+    cursor: pointer;
+}
+
+.home-search-divider {
+    width: 1px;
+    height: 34px;
+    background: #dddddd;
+}
+
+.home-search-button {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #ff385c;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 17px;
+    transition: transform 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.home-search-button:hover {
+    background: #e31c5f;
+    transform: scale(1.04);
+}
+
+@media (max-width: 768px) {
+
+    #filters {
+        justify-content: flex-start;
+        gap: 25px;
+
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .filter {
+        min-width: 60px;
+    }
+
+    .filter i {
+        font-size: 21px;
+    }
+
+    .filter p {
+        font-size: 12px;
+    }
+}

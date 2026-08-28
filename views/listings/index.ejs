@@ -1,5 +1,55 @@
 <% layout('layouts/boilerplate') %>
-<link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/index.css">
+
+<div class="home-search">
+
+    <div class="home-search-item destination-item">
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+            <small>Where</small>
+            <span>Search destinations</span>
+        </div>
+    </div>
+
+    <div class="home-search-divider"></div>
+
+    <div class="home-search-item">
+        <i class="fa-regular fa-calendar"></i>
+        <div>
+            <small>Check in</small>
+            <input
+                type="date"
+                id="checkIn">
+        </div>
+    </div>
+
+    <div class="home-search-divider"></div>
+
+    <div class="home-search-item">
+        <i class="fa-regular fa-calendar"></i>
+        <div>
+            <small>Check out</small>
+            <input
+                type="date"
+                id="checkOut">
+        </div>
+    </div>
+
+    <div class="home-search-divider"></div>
+
+    <div class="home-search-item">
+        <i class="fa-solid fa-user-group"></i>
+        <div>
+            <small>Who</small>
+            <span>Add guests</span>
+        </div>
+    </div>
+
+    <button class="home-search-button">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+
+</div>
 
     <div id="filters">
 
@@ -67,27 +117,47 @@
     <div class="explore-heading">
         <h2>Explore stays</h2>
 
-        <button>
-            <i class="fa-regular fa-map"></i>
-            Show map
-        </button>
+        <div style="display: flex; gap: 10px;">
+            <button>
+                <i class="fa-regular fa-house"></i>
+                <a class="nav-link" href="/listings/new">Add Home</a>
+            </button>
+
+            <button>
+                <i class="fa-regular fa-map"></i>
+                Show map
+            </button>
+        </div>
     </div>
 
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-4">
+
         <% for (let listing of allListings) { %>
             <a href="/listings/<%= listing._id %>" class="listing-link">
+
                 <div class="card col listing-card">
+
                     <img src="<%= listing.image.url %>" class="card-img-top" style="height: 20rem" alt="listing_image">
+
                     <div class="card-img-overlay"></div>
+
                     <div class="card-body">
-                        <p class="card-text"><b>
+                        <p class="card-text">
+                            <b>
                                 <%= listing.title %>
                             </b>
+                            <br>
+                            <span class="listing-location">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <%= listing.location %>, <%= listing.country %>
+                            </span>
                             <br>
                             &#8377; <%= listing.price.toLocaleString('en-IN') %> / Night
                         </p>
                     </div>
+
                 </div>
+
                 <% } %>
             </a>
     </div>
