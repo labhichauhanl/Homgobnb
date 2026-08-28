@@ -118,29 +118,90 @@
             </style>
 
             <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-            <script>
-                const mapTilerKey = "<%= mapTilerApiKey %>";
-                console.log("MapTiler key loaded:", mapTilerKey);
-                const coordinates = "<%- JSON.stringify(listing.geometry.coordinates) %>";
+<script>
+    const mapTilerKey = "<%= mapTilerApiKey %>";
 
-                const map = L.map("map").setView(
-                    [coordinates[1], coordinates[0]],
-                    12
-                );
-                L.tileLayer(
-                    `https://api.maptiler.com/maps/streets-v4/{z}/{x}/{y}.png?key=${mapTilerKey}`,
-                    {
-                        tileSize: 512,
-                        zoomOffset: -1,
-                        minZoom: 1,
-                        attribution:
-                            '&copy; <a href="https://www.maptiler.com/copyright/" target="_blank">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a>',
-                        crossOrigin: true
-                    }
-                ).addTo(map);
-                    L.marker([coordinates[1], coordinates[0]])
-    .addTo(map)
-    .bindPopup("<b><%= listing.title %></b>")
-    .openPopup();
+    // Get coordinates from the listing.
+    // If this is an old listing without geometry, use null.
+    const coordinates = <%- JSON.stringify(
+        listing.geometry && listing.geometry.coordinates
+            ? listing.geometry.coordinates
+            : null
+    ) %>;
 
-            </script>
+    // Create the map
+    const map = L.map("map").setView([20.5937, 78.9629], 5);
+
+    // Add MapTiler tiles
+    L.tileLayer(
+        `https://api.maptiler.com/maps/streets-v4/{z}/{x}/{y}.png?key=${mapTilerKey}`,
+        {
+            tileSize: 512,
+            zoomOffset: -1,
+            minZoom: 1,
+            attribution:
+                '&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">MapTiler</a>',
+            crossOrigin: true
+        }
+    ).addTo(map);
+
+    // If valid coordinates exist, move the map there
+    if (
+        Array.isArray(coordinates) &&
+        coordinates.length === 2 &&
+        typeof coordinates[0] === "number" &&
+        typeof coordinates[1] === "number"
+    ) {
+        map.setView(
+            [coordinates[1], coordinates[0]],
+            12
+        );
+
+        // Airbnb-style marker
+const airbnbIcon = L.divIcon({
+    className: "airbnb-marker",
+    html: `
+        <div class="marker-pin">
+            <div class="marker-dot"></div>
+        </div>
+    `,
+    iconSize: [40, 50],
+    iconAnchor: [20, 50],
+    popupAnchor: [0, -50]
+});
+
+L.marker([coordinates[1], coordinates[0]], {
+    icon: airbnbIcon
+})
+.addTo(map)
+.bindPopup("<b><%= listing.title %></b>")
+.openPopup();
+    }
+</script>
+
+<style>
+    .airbnb-marker {
+        background: transparent;
+        border: none;
+    }
+
+    .marker-pin {
+        width: 30px;
+        height: 30px;
+        background: #FF385C;
+        border-radius: 50% 50% 50% 0;
+        transform: rotate(-45deg);
+        position: relative;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .marker-dot {
+        width: 14px;
+        height: 14px;
+        background: white;
+        border-radius: 50%;
+        position: absolute;
+        top: 8px;
+        left: 8px;
+    }
+</style>
