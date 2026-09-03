@@ -1,5 +1,5 @@
-if(process.env.NODE_ENV != "production"){
-require ("dotenv").config();
+if (process.env.NODE_ENV != "production") {
+    require("dotenv").config();
 }
 
 const express = require('express');
@@ -12,16 +12,17 @@ const ExpressError = require('./utils/ExpressError');
 const listingRouter = require("./routes/listing");
 const reviewRouter = require("./routes/review");
 const userRouter = require("./routes/user");
-const MONGO_URL = 'mongodb://localhost:27017/homigobnb';
 const session = require("express-session");
+const { MongoStore } = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
 
+const dbUrl = process.env.ATLASDB_URL;
 
 async function main() {
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(dbUrl);
 }
 
 main()
@@ -30,7 +31,20 @@ main()
     })
     .catch(err => console.error(err));
 
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    crypto: {
+        secret: "mysupersecretcode"
+    },
+    touchAfter: 24 * 3600
+});
+
+store.on("error", (err) => {
+    console.log("Error in Mongo Session Store.", err);
+});
+
 const sessionOptions = {
+    store,
     secret: "mysupersecretcode",
     resave: false,
     saveUninitialized: true,
@@ -87,7 +101,7 @@ app.all('/*splat', (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-    let {statusCode, message = "Something went wrong. Error Occured."} = err;
+    let { statusCode, message = "Something went wrong. Error Occured." } = err;
     res.render("listings/error.ejs", { message });
 });
 
