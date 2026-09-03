@@ -1,19 +1,103 @@
 <% layout("/layouts/boilerplate") %>
 
-    <div class="row">
-        <h1 class="col-6 offset-3 mb-4 mt-3">Login For Homgobnb</h1>
-        <div class="col-6 offset-3">
+<div class="auth-page">
+
+    <!-- Background image -->
+    <div class="auth-background"></div>
+
+    <!-- Dark overlay -->
+    <div class="auth-background-overlay"></div>
+
+
+    <!-- LEFT CONTENT -->
+    <div class="auth-left">
+
+        <div class="auth-left-content">
+
+            <h2>Homgobnb</h2>
+
+            <h1>
+                Gateway to<br>
+                Unforgettable<br>
+                Experiences
+            </h1>
+
+            <p>
+                Find your perfect stay, explore new places,
+                and create memories that last a lifetime.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT LOGIN CARD -->
+    <div class="auth-right">
+
+        <div class="auth-card">
+
+            <h1>Welcome Back</h1>
+
+            <p class="auth-subtitle">
+                Sign in to continue
+            </p>
+
 
             <form action="/login" method="POST" class="needs-validation" novalidate>
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" id="username" name="username" class="form-control" required>
+
+                <!-- Username -->
+                <div class="auth-input-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username"
+                        required
+                    >
+
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" name="password" class="form-control" required>
+
+
+                <!-- Password -->
+                <div class="auth-input-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
                 </div>
-                <button class="btn btn-dark">Login</button>
+
+
+
+                <!-- Login button -->
+                <button type="submit" class="auth-submit">
+                    Login
+                </button>
+
             </form>
+
+
+            <p class="auth-switch">
+                Don't have an account?
+                <a href="/signup">Create Account</a>
+            </p>
+
         </div>
+
     </div>
+
+</div>

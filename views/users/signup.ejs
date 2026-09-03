@@ -1,25 +1,125 @@
 <% layout("/layouts/boilerplate") %>
 
-    <div class="row">
-        <h1 class="col-6 offset-3 mb-4 mt-3">Signup For Homgobnb</h1>
-        <div class="col-6 offset-3">
+<div class="auth-page">
+
+    <!-- Background image -->
+    <div class="auth-background"></div>
+
+    <!-- Dark overlay -->
+    <div class="auth-background-overlay"></div>
+
+
+    <!-- LEFT CONTENT -->
+    <div class="auth-left">
+
+        <div class="auth-left-content">
+
+            <h2>Homgobnb</h2>
+
+            <h1>
+                Your Journey<br>
+                Starts<br>
+                Here
+            </h1>
+
+            <p>
+                Join Homgobnb and discover beautiful places,
+                comfortable stays, and unforgettable experiences.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT SIGNUP CARD -->
+    <div class="auth-right">
+
+        <div class="auth-card">
+
+            <h1>Create Account</h1>
+
+            <p class="auth-subtitle">
+                Join Homgobnb today
+            </p>
+
 
             <form action="/signup" method="POST" class="needs-validation" novalidate>
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" id="username" name="username" class="form-control" required>
-                    <div class="valid-feedback">Title accepted!</div>
-                    <div class="invalid-feedback">Please enter a valid detail.</div>
+
+                <!-- Username -->
+                <div class="auth-input-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Choose a username"
+                        required
+                    >
+
+                    <div class="invalid-feedback">
+                        Please enter a valid username.
+                    </div>
+
                 </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" required>
+
+
+                <!-- Email -->
+                <div class="auth-input-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" name="password" class="form-control" required>
+
+
+                <!-- Password -->
+                <div class="auth-input-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        required
+                    >
+
                 </div>
-                <button class="btn btn-dark">Signup</button>
+
+
+                <!-- Signup button -->
+                <button type="submit" class="auth-submit">
+                    Create Account
+                </button>
+
             </form>
+
+
+            <!-- Login link -->
+            <p class="auth-switch">
+                Already have an account?
+                <a href="/login">Login</a>
+            </p>
+
         </div>
+
     </div>
+
+</div>
