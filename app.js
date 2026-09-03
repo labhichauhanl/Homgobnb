@@ -83,6 +83,10 @@ app.get("/demouser", async (req, res) => {
     res.send(registeredUser);
 });
 
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
