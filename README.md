@@ -311,3 +311,10 @@ Homgobnb/
 ├── app.js
 ├── package.json
 └── README.md
+
+# 👨‍💻 Author
+
+**Abhyudai Singh**
+
+B.Tech — Computer Science & Engineering (Artificial Intelligence & Machine Learning)  
+Vellore Institute of Technology, Bhopal
