@@ -259,3 +259,55 @@ User Request
      │
      ▼
    Browser
+
+Homgobnb/
+│
+├── controllers/
+│   ├── listings.js
+│   ├── review.js
+│   └── user.js
+│
+├── models/
+│   ├── listing.js
+│   ├── review.js
+│   └── user.js
+│
+├── routes/
+│   ├── listings.js
+│   ├── review.js
+│   └── user.js
+│
+├── views/
+│   ├── layouts/
+│   │   └── boilerplate.ejs
+│   │
+│   ├── includes/
+│   │   ├── navbar.ejs
+│   │   ├── footer.ejs
+│   │   └── flash.ejs
+│   │
+│   ├── listings/
+│   │   ├── index.ejs
+│   │   ├── new.ejs
+│   │   ├── show.ejs
+│   │   ├── edit.ejs
+│   │   └── error.ejs
+│   │
+│   └── users/
+│       ├── login.ejs
+│       └── signup.ejs
+│
+├── public/
+│   ├── css/
+│   └── js/
+│
+├── utils/
+│   ├── ExpressError.js
+│   └── wrapAsync.js
+│
+├── cloudConfig.js
+├── middleware.js
+├── schema.js
+├── app.js
+├── package.json
+└── README.md
