@@ -105,8 +105,13 @@ app.all('/*splat', (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-    let { statusCode, message = "Something went wrong. Error Occured." } = err;
-    res.render("listings/error.ejs", { message });
+    console.error("========== ERROR ==========");
+    console.error(err);
+    console.error("============================");
+
+    let { statusCode = 500, message = "Something went wrong. Error Occured." } = err;
+
+    res.status(statusCode).render("listings/error.ejs", { message });
 });
 
 app.listen(3000, () => {
